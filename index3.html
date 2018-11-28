@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lan="en">
+<head>
+    <title>Porcent</title>
+</head>
+<body>
+<form action="">
+  <fieldset>
+    <legend>% De Dos Numeros</legend>
+    <center>
+        <table width="80%">
+            <tr>
+                <th># 1</th>
+                <th># 2</th>
+                <th>Resultado</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" value='125' id="_number1" style="width: 100%;">
+                </td>
+                <td>
+                    <input type="number" value='90' id="_number2" style="width: 100%;">
+                </td>
+                <td>
+                    <input type="number" id="_result" style="width: 100%;">
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">
+                    <input type="button" value="Calcular" onclick="calc();" style="width: 200px;height: 35px;">
+                </th>
+            </tr>
+        </table>
+    <center/>
+  </fieldset>
+</form>
+<script>
+window.addEventListener('load',function(){
+},false)
+  function calc(){
+    var a, b, c, rest, div, mult;
+        a = document.getElementById('_number1').value;
+        b = document.getElementById('_number2').value;
+
+        if (a < b) {
+            alert('A1 - '+a+'\n B1: '+b)
+            c = b;
+        } else {
+            alert('A2 - '+a+'\n B2: '+b)
+            c = a;
+        };
+
+        rest = (a - b);
+        div = (rest / c);
+        mult = (div * 100);
+        alert('Resta: '+rest+'\nDivision: '+div+'\nMultiplicacion: '+Math.round(mult)+' C: '+c);
+  }
+</script>
+</body>
+</html>

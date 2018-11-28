@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<form action="#" method="post" id="demoForm" class="demoForm">
+    <fieldset>
+        <legend>Demo: Get Selected Options</legend>
+    
+        <p>
+            <select name="demoSel[]" id="demoSel" size="6" multiple>
+                <option value="scroll">Scrolling Divs JavaScript</option>
+                <option value="tooltip">JavaScript Tooltips</option>
+                <option value="con_scroll">Continuous Scroller</option>
+                <option value="banner">Rotating Banner JavaScript</option>
+                <option value="random_img">Random Image PHP</option>
+                <option value="form_builder">PHP Form Generator</option>
+                <option value="table_class">PHP Table Class</option>
+                <option value="order_forms">PHP Order Forms</option>
+            </select>
+            <input type="submit" value="Submit" />
+            <textarea name="display" id="display" placeholder="view select list value(s) onchange" cols="20" rows="4" readonly></textarea>
+        </p>
+        
+    </fieldset>
+</form>
+<script>
+// arguments: reference to select list, callback function (optional)
+function getSelectedOptions(sel, fn) {
+    var opts = [], opt;
+    
+    // loop through options in select list
+    for (var i=0, len=sel.options.length; i<len; i++) {
+        opt = sel.options[i];
+        
+        // check if selected
+        if ( opt.selected ) {
+            // add to array of option elements to return from this function
+            opts.push(opt);
+            
+            // invoke optional callback function if provided
+            if (fn) {
+                fn(opt);
+            }
+        }
+    }
+    // return array containing references to selected option elements
+    return opts;
+}
+
+// example callback function (selected options passed one by one)
+function callback(opt) {
+    // display in textarea for this example
+    var display = document.getElementById('display');
+    display.innerHTML += opt.value + ', ';
+
+    // can access properties of opt, such as...
+    //alert( opt.value )
+    //alert( opt.text )
+    //alert( opt.form )
+}
+
+// anonymous function onchange for select list with id demoSel
+document.getElementById('demoSel').onchange = function(e) {
+    // get reference to display textarea
+    var display = document.getElementById('display');
+    display.innerHTML = ''; // reset
+    
+    // callback fn handles selected options
+    getSelectedOptions(this, callback);
+    
+    // remove ', ' at end of string
+    var str = display.innerHTML.slice(0, -2);
+    display.innerHTML = str;
+};
+
+document.getElementById('demoForm').onsubmit = function(e) {
+    // reference to select list using this keyword and form elements collection
+    // no callback function used this time
+    var opts = getSelectedOptions( this.elements['demoSel[]'] );
+    
+    // alert( 'The number of options selected is: ' + opts.length ); //  number of selected options
+    var p = new Array('2017-07-01','2017-07-03','2017-07-05');
+    var obj = {};
+    	obj.string = 'Cuotas';
+    	obj.integer = 55;
+    	obj.decimal = 55.00;
+    	obj.bool = true;
+    	obj.arr = new Array(100,150,'otro');
+    	obj.objecto = {fecha: '2017-07-01',fecha1: '2017-07-03',fecha2: '2017-07-05'};
+    console.log(obj);
+    var str = JSON.stringify(obj);
+    console.log(str);
+    var prs = JSON.parse(str);
+    console.log(prs);
+
+    function cb(item, index){
+    	return item;
+    }
+
+    return false; // don't return online form
+};
+
+</script>
+</body>
+</html>
